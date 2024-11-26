@@ -34,6 +34,7 @@ AWZProjectCharacter::AWZProjectCharacter()
 	Mesh1P->bCastDynamicShadow = false;
 	Mesh1P->CastShadow = false;
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+	CurrentScore = 0;
 
 }
 
@@ -99,4 +100,13 @@ void AWZProjectCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+void AWZProjectCharacter::AddScore(int32 ScoreToAdd)
+{
+	CurrentScore += ScoreToAdd;
+}
+
+int32 AWZProjectCharacter::GetCurrentScore() const
+{
+	return CurrentScore;
 }

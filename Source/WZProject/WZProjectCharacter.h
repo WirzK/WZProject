@@ -47,7 +47,12 @@ class AWZProjectCharacter : public ACharacter
 	
 public:
 	AWZProjectCharacter();
+	UFUNCTION()
+	void AddScore(int32 ScoreToAdd);
 
+	UFUNCTION()
+	int32 GetCurrentScore() const;
+	
 protected:
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
@@ -66,6 +71,7 @@ public:
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
-
+	UPROPERTY()
+	int32 CurrentScore;	
 };
 

@@ -40,4 +40,5 @@ void AWZProjectProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActo
 
 		Destroy();
 	}
+	Destroy();//发生碰撞后摧毁子弹
 }
