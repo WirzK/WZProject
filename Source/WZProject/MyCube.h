@@ -15,6 +15,8 @@ public:
 	AMyCube();
 	UPROPERTY(EditAnywhere)
 	int32 ScoreValue;
+	UPROPERTY(EditAnywhere)
+	float ScaleSize;
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* CubeMesh;
 	

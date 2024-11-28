@@ -27,18 +27,20 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Cube Settings")
 	int32 CommonValue;
 	UPROPERTY(EditAnywhere, Category = "Cube Settings")
-	int32 NumberOfCubesToModify; // 设置需要随机选择的方块数量
+	int32 ImportantCube; 
+	UPROPERTY(EditAnywhere, Category = "Cube Settings")
+	float ScaleSize; 
 
 	UPROPERTY()
-	TArray<AMyCube*> MyCubeInstances; // 存储场景中的所有 MyCube 实例
+	TArray<AMyCube*> MyCubeInstances; 
 	
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Materials")
-	UMaterialInterface* ImportantMaterial; // 材质 B 的引用
+	UMaterialInterface* ImportantMaterial; 
 
-	void FindAllMyCubes(); // 查找所有 MyCube 实例
-	void RandomlyModifyCubes(); // 随机选取和修改方块
+	void FindAllMyCubes(); 
+	void RandomlyModifyCubes(); 
 
 	
 	

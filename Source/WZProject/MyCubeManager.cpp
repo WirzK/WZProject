@@ -18,10 +18,7 @@ AMyCubeManager::AMyCubeManager()
 void AMyCubeManager::BeginPlay()
 {
 	Super::BeginPlay();
-	// 查找所有 MyCube 实例
 	FindAllMyCubes();
-
-	// 随机选取并修改方块
 	RandomlyModifyCubes();
 }
 
@@ -35,7 +32,6 @@ void AMyCubeManager::FindAllMyCubes()
 {
 	TArray<AActor*> TempActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AMyCube::StaticClass(), TempActors);
-	// 获取场景中所有 AMyCube 类型的实例
 	for (AActor* Actor : TempActors)
 	{
 		AMyCube* MyCube = Cast<AMyCube>(Actor);
@@ -52,29 +48,25 @@ void AMyCubeManager::RandomlyModifyCubes()
 	{
 		return;
 	}
-
-
-	// 打乱数组顺序
+	
 	for (int32 i = 0; i < MyCubeInstances.Num(); i++)
 	{
 		int32 RandomIndex = FMath::RandRange(i, MyCubeInstances.Num() - 1);
 		MyCubeInstances.Swap(i, RandomIndex);
 	}
 	
-	// 修改前 CountToModify 个方块
 	for (int32 i = 0; i < MyCubeInstances.Num(); i++)
 	{
 		AMyCube* Cube = MyCubeInstances[i];
-		if (i<NumberOfCubesToModify)
+		Cube->ScaleSize = ScaleSize;
+		if (i<ImportantCube)
 		{
-			// 修改材质为 B
 			UStaticMeshComponent* Mesh = Cube->FindComponentByClass<UStaticMeshComponent>();
 			if (Mesh)
 			{
 				Mesh->SetMaterial(0, ImportantMaterial);
 			}
-
-			// 修改分数值
+			
 			Cube->ScoreValue = CommonValue * 2;
 		}
 		else

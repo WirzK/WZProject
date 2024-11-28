@@ -29,14 +29,13 @@ void AMyCube::ScaleCube()
 {
 	if (!bHasScaled)
 	{
-		// 缩放方块
-		FVector NewScale = FVector(0.5f, 0.5f, 0.5f); // 缩放为0.5倍
+		// 缩放
+		FVector NewScale = FVector(ScaleSize, ScaleSize, ScaleSize); 
 		CubeMesh->SetWorldScale3D(NewScale);
 		bHasScaled = true;
 	}
 	else
 	{
-		// 销毁方块
 		Destroy();
 		AWZProjectCharacter* PlayerCharacter = Cast<AWZProjectCharacter>(GetWorld()->GetFirstPlayerController()->GetPawn());
 		if (PlayerCharacter)
