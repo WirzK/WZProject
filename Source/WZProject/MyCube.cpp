@@ -18,22 +18,12 @@ AMyCube::AMyCube()
 
 	CubeMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CubeMesh"));
 	CubeMesh->SetupAttachment(RootComponent);
-
-	ScoreValue = 10; // 设置初始分数
 	bHasScaled = false;
 }
 void AMyCube::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	FString OtherCompClassName = OtherActor->GetClass()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("OtherComp class: %s"), *OtherCompClassName);
-	AWZProjectCharacter* PlayerCharacter = Cast<AWZProjectCharacter>(GetWorld()->GetFirstPlayerController()->GetPawn());
-	if (PlayerCharacter)
-	{
-		PlayerCharacter->AddScore(ScoreValue);
-		UE_LOG(LogTemp, Warning, TEXT("Current Score: %d"), PlayerCharacter->GetCurrentScore());
-	}
-		// 缩放方块
-		ScaleCube();
+	ScaleCube();
 }
 void AMyCube::ScaleCube()
 {
@@ -48,6 +38,12 @@ void AMyCube::ScaleCube()
 	{
 		// 销毁方块
 		Destroy();
+		AWZProjectCharacter* PlayerCharacter = Cast<AWZProjectCharacter>(GetWorld()->GetFirstPlayerController()->GetPawn());
+		if (PlayerCharacter)
+		{
+			PlayerCharacter->AddScore(ScoreValue);
+			UE_LOG(LogTemp, Warning, TEXT("当前分数: %d"), PlayerCharacter->GetCurrentScore());
+		}
 	}
 }
 

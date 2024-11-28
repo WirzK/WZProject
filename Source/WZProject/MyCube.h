@@ -13,16 +13,15 @@ class WZPROJECT_API AMyCube : public AActor
 
 public:
 	AMyCube();
+	UPROPERTY(EditAnywhere)
+	int32 ScoreValue;
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* CubeMesh;
+	
 protected:
 	UPROPERTY(VisibleAnywhere)
 	UBoxComponent* CollisionBox;
-
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* CubeMesh;
-
-	UPROPERTY(EditAnywhere)
-	int32 ScoreValue;
-
+	
 	UPROPERTY()
 	bool bHasScaled;
 
